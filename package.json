@@ -1,0 +1,51 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "up": "taze -I major",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@arco-design/web-vue": "latest",
+    "@nuxt/eslint": "latest",
+    "@nuxt/kit": "latest",
+    "@pinia/nuxt": "0.11.1",
+    "@tanstack/vue-query": "latest",
+    "@tanstack/vue-query-devtools": "latest",
+    "@vueuse/nuxt": "latest",
+    "@weila/network": "link://C:/tmp/work_unity/packages/network",
+    "arco-design-nuxt-module": "latest",
+    "nuxt": "latest",
+    "pinia": "^3.0.3",
+    "ufo": "latest",
+    "vue": "latest",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "latest",
+    "@antfu/utils": "^9.2.0",
+    "@types/crypto-js": "^4.2.2",
+    "@types/md5": "^2.3.5",
+    "@unocss/core": "latest",
+    "@unocss/eslint-plugin": "latest",
+    "@unocss/nuxt": "latest",
+    "@unocss/preset-web-fonts": "latest",
+    "crypto-js": "latest",
+    "eslint": "latest",
+    "eslint-plugin-format": "latest",
+    "esno": "latest",
+    "md5": "latest",
+    "msw": "latest",
+    "taze": "latest",
+    "typescript": "latest",
+    "unocss": "latest"
+  }
+}
