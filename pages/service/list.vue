@@ -6,5 +6,5 @@ definePageMeta({
 </script>
 
 <template>
-  <div />
+  <div>service list</div>
 </template>

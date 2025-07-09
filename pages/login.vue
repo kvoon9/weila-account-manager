@@ -37,7 +37,7 @@ function submit() {
           <a-input v-model="form.password" type="password" placeholder="please enter your password..." />
         </a-form-item>
         <a-form-item>
-          <a-button @click="submit">
+          <a-button mxa @click="submit">
             登录
           </a-button>
         </a-form-item>

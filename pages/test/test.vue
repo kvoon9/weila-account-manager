@@ -1,10 +1,10 @@
 <script setup lang="ts">
 definePageMeta({
-  name: '组织列表',
+  name: 'test',
   layout: 'home',
 })
 </script>
 
 <template>
-  <div>org list</div>
+  <div>123</div>
 </template>

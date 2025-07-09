@@ -7,20 +7,18 @@ definePageMeta({
 const form = reactive({
   country_code: '',
   phone: '',
-  password: ''
+  password: '',
 })
 
 const regionOptions = [
   { label: '香港 +852', value: '+852' },
   { label: '澳门 +853', value: '+853' },
-  { label: '台湾 +886', value: '+886' }
+  { label: '台湾 +886', value: '+886' },
 ]
 </script>
 
 <template>
-  <div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-sm">
-    <h2 class="text-xl font-semibold mb-6 text-gray-800">港澳台开户</h2>
-    
+  <div class="max-w-md bg-white rounded-lg shadow-sm">
     <div class="space-y-4">
       <a-form :model="form" layout="vertical">
         <a-form-item label="手机号" field="phone">
@@ -28,7 +26,7 @@ const regionOptions = [
             <a-select
               v-model="form.country_code"
               :options="regionOptions"
-              :style="{width:'160px'}"
+              :style="{ width: '160px' }"
               placeholder="地区码"
             />
             <a-input
@@ -47,7 +45,9 @@ const regionOptions = [
           />
         </a-form-item>
 
-        <a-button type="primary" long>提交</a-button>
+        <a-button type="primary" long>
+          提交
+        </a-button>
       </a-form>
     </div>
   </div>

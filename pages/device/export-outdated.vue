@@ -30,14 +30,11 @@ function exportFile() {
 
 <template>
   <div h-full flex="~ col" gap2>
-    <h1 flex="~ justify-between items-center">
-      设备导出
-      <div>
-        <a-button @click="exportFile">
-          导出为 Excel
-        </a-button>
-      </div>
-    </h1>
+    <teleport to="#home-header-extra">
+      <a-button @click="exportFile">
+        导出为 Excel
+      </a-button>
+    </teleport>
     <div flex gap2>
       <a-input v-model="input" style="width: 300px" placeholder="手机号" />
       <a-button type="primary">
