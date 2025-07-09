@@ -1,7 +1,5 @@
 export default defineNuxtRouteMiddleware((to) => {
-  const { access_token } = useAuthStore()
-
-  if (access_token || to.meta.public) {
+  if (weilaApi.token.value || to.meta.public) {
     // empty
   }
   else {

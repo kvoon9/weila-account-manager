@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { RouteRecordNormalized } from '#vue-router'
 
-const { logout } = useAuthStore()
 const router = useRouter()
 
 interface Menu {
@@ -44,7 +43,12 @@ for (const route of routeList) {
 }
 
 function goTo(path: string) {
-  router.push(path)
+  navigateTo(path)
+}
+
+function logout() {
+  weilaApi.clear()
+  window.location.reload()
 }
 </script>
 

@@ -26,6 +26,9 @@ function exportFile() {
   /* export to XLSX */
   writeFileXLSX(wb, `weila-devices-${Date.now()}.xlsx`)
 }
+
+const list = Array.from({ length: 10 })
+const currentPage = shallowRef(1)
 </script>
 
 <template>
@@ -62,7 +65,7 @@ function exportFile() {
     </div>
     <section flex-1 of-y-auto>
       <a-list>
-        <a-list-item v-for="idx in 100" :key="idx">
+        <a-list-item v-for="i, idx in list" :key="idx">
           <a-list-item-meta
             title="Beijing Bytedance Technology Co., Ltd."
             description="Beijing ByteDance Technology Co., Ltd. is an enterprise located in China."
@@ -79,5 +82,6 @@ function exportFile() {
         </a-list-item>
       </a-list>
     </section>
+    <a-pagination mxa v-model="currentPage" :total="list.length" show-total/>
   </div>
 </template>

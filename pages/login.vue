@@ -1,20 +1,24 @@
 <script setup lang="ts">
+import md5 from 'md5'
+
 definePageMeta({
   public: true,
 })
 
-const router = useRouter()
 const form = reactive({
   user_name: '10000002',
   password: '123456',
 })
 
-const { login } = useAuthStore()
-
 function submit() {
-  login(form)
+  const {user_name, password} = form
+  weilaApi
+  .login('sessions/login', {
+    user_name,
+    password: md5(password)
+  })
     .then(() => {
-      router.push('/org/list')
+      navigateTo('/')
       Message.info('登录成功')
     })
     .catch(() => {

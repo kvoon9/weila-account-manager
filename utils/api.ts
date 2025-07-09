@@ -1,11 +1,9 @@
-import type { CreateWeilaApiOptions } from '@weila/network'
 import { Message } from '@arco-design/web-vue'
-import { createWeilaFetchV1 } from '@weila/network'
+import { WeilaApi } from '@weila/network'
 
-import { useAuthStore } from '~/stores/auth'
-
-const options: CreateWeilaApiOptions = {
-  onError(error) {
+export const weilaApi = new WeilaApi({
+  baseURL: useBaseURL('v1', 'proxy'),
+  onError(error: any) {
     if (error instanceof Error) {
       Message.error(error.message)
     }
@@ -20,16 +18,11 @@ const options: CreateWeilaApiOptions = {
     }
   },
   onLogout() {
-    const { logout } = useAuthStore()
-
-    logout()
+    weilaApi.clear()
+    navigateTo('/login')
   },
-}
-
-export const $v1 = createWeilaFetchV1({
-  baseURL: useBaseURL('v1', 'proxy'),
-  ...options,
 })
+
 
 function useBaseURL(_base: string, proxy: string) {
   return proxy

@@ -11,7 +11,8 @@
     "postinstall": "nuxt prepare",
     "up": "taze -I major",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@arco-design/web-vue": "latest",
@@ -21,7 +22,7 @@
     "@tanstack/vue-query": "latest",
     "@tanstack/vue-query-devtools": "latest",
     "@vueuse/nuxt": "latest",
-    "@weila/network": "link://C:/tmp/work_unity/packages/network",
+    "@weila/network": "https://pkg.pr.new/kvoon3/wl-network/@weila/network@276794388c08106ee5a4dd46daa33c2160c6bed1",
     "arco-design-nuxt-module": "latest",
     "nuxt": "latest",
     "pinia": "^3.0.3",
