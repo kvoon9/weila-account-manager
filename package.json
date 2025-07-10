@@ -47,10 +47,18 @@
     "eslint": "latest",
     "eslint-plugin-format": "latest",
     "esno": "latest",
+    "lint-staged": "^16.1.2",
     "md5": "latest",
+    "simple-git-hooks": "^2.13.0",
     "taze": "latest",
     "typescript": "latest",
     "unocss": "latest",
     "vue-tsc": "^3.0.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }

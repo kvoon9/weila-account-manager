@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import * as v from 'valibot'
-import { valibotArcoRules } from 'zod-arco-rules'
 
 definePageMeta({
   name: '港澳台开户',
