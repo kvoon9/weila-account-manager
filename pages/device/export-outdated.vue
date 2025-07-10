@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ClientOnly } from '#components'
 import { utils, writeFileXLSX } from 'xlsx'
 
 definePageMeta({
@@ -33,11 +34,13 @@ const currentPage = shallowRef(1)
 
 <template>
   <div h-full flex="~ col" gap2>
-    <teleport to="#home-header-extra">
-      <a-button @click="exportFile">
-        导出为 Excel
-      </a-button>
-    </teleport>
+    <ClientOnly>
+      <teleport to="#home-header-extra">
+        <a-button @click="exportFile">
+          导出为 Excel
+        </a-button>
+      </teleport>
+    </ClientOnly>
     <div flex gap2>
       <a-input v-model="input" style="width: 300px" placeholder="手机号" />
       <a-button type="primary">
@@ -82,6 +85,6 @@ const currentPage = shallowRef(1)
         </a-list-item>
       </a-list>
     </section>
-    <a-pagination mxa v-model="currentPage" :total="list.length" show-total/>
+    <a-pagination v-model="currentPage" mxa :total="list.length" show-total />
   </div>
 </template>

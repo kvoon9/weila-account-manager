@@ -3,6 +3,7 @@ import md5 from 'md5'
 
 definePageMeta({
   public: true,
+  layout: 'welcome',
 })
 
 const form = reactive({

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RouteRecordNormalized } from '#vue-router'
+import { ClientOnly } from '#components'
 
 const router = useRouter()
 const api = useWeilaApi()
@@ -44,7 +45,6 @@ for (const route of routeList) {
 }
 
 function goTo(path: string) {
-  console.log('path', path)
   navigateTo(path)
 }
 
