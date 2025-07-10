@@ -9,21 +9,33 @@ interface Form {
 
 export function useForm<T extends Form>(form: T) {
   type K = keyof T
+  const normalizedForm = {} as any
   const _rules = {} as Record<K, T[K]['rule']>
   const _form = {} as Record<K, T[K]['value']>
 
   for (const [key, maybeValue] of objectEntries(form)) {
     const { value, rule } = normalizeValue(maybeValue)
 
+    normalizedForm[key] = { value, rule }
     _rules[key] = rule
     _form[key] = value
+  }
+
+  const reactiveForm = reactive(_form)
+
+  const reset = () => {
+    for (const [key, { value }] of objectEntries(normalizedForm)) {
+      // @ts-expect-error type error
+      reactiveForm[key] = value
+    }
   }
 
   return {
     ...valibotArcoRules(v.object(
       clearUndefined(_rules),
     )),
-    form: reactive(_form),
+    form: reactiveForm,
+    reset,
   }
 }
 

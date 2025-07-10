@@ -122,8 +122,4 @@ export default defineNuxtConfig({
       },
     },
   },
-
-  unocss: {
-    nuxtLayers: true,
-  },
 })

@@ -9,6 +9,9 @@ definePageMeta({
 })
 const dateScope = shallowRef('0')
 
+const route = useRoute()
+const router = useRouter()
+
 const input = shallowRef('')
 $inspect(dateScope)
 
@@ -36,7 +39,7 @@ const currentPage = shallowRef(1)
   <div h-full flex="~ col" gap2>
     <ClientOnly>
       <teleport to="#home-header-extra">
-        <a-button @click="exportFile">
+        <a-button v-if="route.path === router.currentRoute.value.path" @click="exportFile">
           导出为 Excel
         </a-button>
       </teleport>

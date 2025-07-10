@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import TheTable from '~/components/TheTable.vue'
+
 definePageMeta({
   name: '用户查询',
   layout: 'home',
@@ -25,16 +27,16 @@ async function search() {
   })
 }
 
-const columns = [
-  { title: '用户ID', dataIndex: 'user_id' },
-  { title: '昵称', dataIndex: 'nick' },
-  { title: '性别', dataIndex: 'gender' },
-  { title: '手机号', dataIndex: 'phone' },
-  { title: '状态', dataIndex: 'status' },
-  { title: '用户编号', dataIndex: 'user_number' },
-  { title: '头像', dataIndex: 'avatar' },
-  { title: '国家代码', dataIndex: 'country_code' },
-]
+const columns = {
+  user_id: '用户ID',
+  nick: '昵称',
+  gender: '性别',
+  phone: '手机号',
+  status: '状态',
+  user_number: '用户编号',
+  avatar: '头像',
+  country_code: '国家代码',
+}
 </script>
 
 <template>
@@ -45,6 +47,16 @@ const columns = [
         搜索
       </a-button>
     </div>
-    <a-table :columns="columns" :data="data" />
+    <TheTable :columns :data>
+      <template #columns>
+        <a-table-column title="操作">
+          <template #cell>
+            <a-button @click="() => void 0">
+              view
+            </a-button>
+          </template>
+        </a-table-column>
+      </template>
+    </TheTable>
   </div>
 </template>

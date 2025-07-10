@@ -16,6 +16,8 @@ body {
 
 html.dark {
   color-scheme: dark;
+  background: black;
+  color: #ddd;
 }
 
 .shiki {

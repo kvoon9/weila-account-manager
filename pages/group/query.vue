@@ -146,12 +146,12 @@ async function getInactiveMemberCount() {
 
       <!-- 不活跃成员信息 -->
       <div v-if="inactiveActiveMemberCount" class="bg-white rounded-lg shadow-sm p-6">
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap2 mb-4">
           <h3 class="text-lg font-medium">
             不活跃成员信息
           </h3>
           <div class="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-sm font-medium">
-            {{ inactiveActiveMemberCount.count }} 位成员
+            {{ inactiveActiveMemberCount.count }} 位
           </div>
         </div>
 

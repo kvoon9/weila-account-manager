@@ -8,7 +8,7 @@ definePageMeta({
 
 const api = useWeilaApi()
 
-const { form, rules, handleSubmit } = useForm({
+const { form, rules, handleSubmit, reset } = useForm({
   country_code: '+852',
   phone: '',
   password: {
@@ -31,23 +31,18 @@ interface Account {
 const accounts = ref<Account[]>([])
 
 const submit = handleSubmit(async () => {
-  try {
-    const newAccount = await api.value.v1.fetch<Account>('/operator/user/create-international-account', {
-      body: form,
-    })
+  const newAccount = await api.value.v1.fetch<Account>('/operator/user/create-international-account', {
+    body: form,
+  })
+  if (newAccount)
     accounts.value.push(newAccount)
-    // Clear the form after successful submission
-    form.phone = ''
-    form.password = ''
-  }
-  catch (error) {
-    console.error('Error creating account:', error)
-  }
+
+  reset()
 })
 </script>
 
 <template>
-  <div class="max-w-md bg-white rounded-lg shadow-sm">
+  <div class="max-w-md bg-white rounded-lg ">
     <div class="space-y-4 p-4">
       <a-form :rules :model="form" layout="vertical" @submit="submit">
         <a-form-item label="手机号" field="phone">
@@ -74,9 +69,14 @@ const submit = handleSubmit(async () => {
           />
         </a-form-item>
 
-        <a-button type="primary" long html-type="submit">
-          提交
-        </a-button>
+        <a-form-item>
+          <a-button mla @click="reset">
+            重置
+          </a-button>
+          <a-button ml4 type="primary" html-type="submit">
+            提交
+          </a-button>
+        </a-form-item>
       </a-form>
 
       <!-- Display created accounts -->
