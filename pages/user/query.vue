@@ -17,14 +17,12 @@ interface User {
 
 const input = shallowRef('')
 
-const { data, refresh } = useWeilaFetch<User>('operator/user/search-user', () => ({
-  number: input.value,
-}), {
-  immediate: false,
-})
+const data = shallowRef<User>()
 
 async function search() {
-  refresh()
+  data.value = await useWeilaApi().value.v1.fetch<User>('operator/user/search-user', {
+    body: { number: input.value },
+  })
 }
 
 const columns = [

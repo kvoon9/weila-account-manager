@@ -11,19 +11,16 @@ const form = reactive({
 })
 
 function submit() {
-  const {user_name, password} = form
-  weilaApi
-  .login('sessions/login', {
+  const { user_name, password } = form
+  useWeilaApi().value.login('sessions/login', {
     user_name,
-    password: md5(password)
+    password: md5(password),
+  }).then(() => {
+    navigateTo('/')
+    Message.info('登录成功')
+  }).catch(() => {
+    Message.error('登录失败')
   })
-    .then(() => {
-      navigateTo('/')
-      Message.info('登录成功')
-    })
-    .catch(() => {
-      Message.error('登录失败')
-    })
 }
 </script>
 

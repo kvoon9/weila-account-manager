@@ -1,5 +1,6 @@
 export default defineNuxtRouteMiddleware((to) => {
-  if (weilaApi.token.value || to.meta.public) {
+  const weilaApi = useWeilaApi()
+  if (weilaApi.value.token.value || to.meta.public) {
     // empty
   }
   else {

@@ -4,6 +4,8 @@ definePageMeta({
   layout: 'home',
 })
 
+const api = useWeilaApi()
+
 const input = ref('')
 const loading = ref(false)
 
@@ -29,7 +31,7 @@ const inactiveActiveMemberCount = shallowRef<InactiveMemberCount | undefined>(un
 $inspect(group, inactiveActiveMemberCount)
 
 async function getGroupInfo() {
-  group.value = await weilaRequest<Group>('/operator/group/get-group-info', {
+  group.value = await api.value.v1.fetch<Group>('/operator/group/get-group-info', {
     body: {
       group_number: input.value,
     },
@@ -38,7 +40,7 @@ async function getGroupInfo() {
 }
 
 async function getInactiveMemberCount() {
-  inactiveActiveMemberCount.value = await weilaRequest<InactiveMemberCount>('/operator/group/get-inactive-member-count', {
+  inactiveActiveMemberCount.value = await api.value.v1.fetch<InactiveMemberCount>('/operator/group/get-inactive-member-count', {
     body: {
       group_number: input.value,
     },

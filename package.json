@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@9.15.4",
   "scripts": {
+    "prepare": "nuxt prepare",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -12,7 +13,7 @@
     "up": "taze -I major",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@arco-design/web-vue": "latest",
@@ -47,6 +48,7 @@
     "msw": "latest",
     "taze": "latest",
     "typescript": "latest",
-    "unocss": "latest"
+    "unocss": "latest",
+    "vue-tsc": "^3.0.1"
   }
 }

@@ -2,6 +2,7 @@
 import type { RouteRecordNormalized } from '#vue-router'
 
 const router = useRouter()
+const api = useWeilaApi()
 
 interface Menu {
   [key: string]: {
@@ -43,11 +44,12 @@ for (const route of routeList) {
 }
 
 function goTo(path: string) {
+  console.log('path', path)
   navigateTo(path)
 }
 
 function logout() {
-  weilaApi.clear()
+  api.value.clear()
   window.location.reload()
 }
 </script>
@@ -93,7 +95,9 @@ function logout() {
         </a-page-header>
         <section relative>
           <div px6 py4 inset-0 absolute>
-            <slot />
+            <!--
+            -->
+            <slot name="default" />
           </div>
         </section>
       </div>
