@@ -4,7 +4,7 @@ import { isFunction } from '@antfu/utils'
 export function useWeilaFetch<T>(
   url: string,
   options?: AsyncDataOptions<T> & {
-    body?: MaybeRefOrGetter<object>
+    body?: MaybeRefOrGetter<RequestInit['body'] | Record<string, any>>
   },
 ) {
   const { body } = options || {}
@@ -18,10 +18,10 @@ export function useWeilaFetch<T>(
     options,
   )
 
+  const { refresh } = res
+
   if (body && (isRef(body) || isFunction(body))) {
     watch(body, () => {
-      const { refresh } = res
-
       refresh()
     }, { deep: true })
   }

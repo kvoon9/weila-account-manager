@@ -8,9 +8,10 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'arco-design-nuxt-module',
     '@pinia/nuxt',
+    '@nuxt/image',
   ],
 
-  ssr: true,
+  ssr: false,
 
   imports: {
     dirs: [

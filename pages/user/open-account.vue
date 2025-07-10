@@ -1,13 +1,21 @@
 <script setup lang="ts">
+import * as v from 'valibot'
+import { valibotArcoRules } from 'zod-arco-rules'
+
 definePageMeta({
   name: '港澳台开户',
   layout: 'home',
 })
 
-const form = reactive({
-  country_code: '',
+const api = useWeilaApi()
+
+const { form, rules, handleSubmit } = useForm({
+  country_code: '+852',
   phone: '',
-  password: '',
+  password: {
+    value: '',
+    rule: v.pipe(v.string(), v.minLength(6)),
+  },
 })
 
 const regionOptions = [
@@ -15,12 +23,34 @@ const regionOptions = [
   { label: '澳门 +853', value: '+853' },
   { label: '台湾 +886', value: '+886' },
 ]
+
+interface Account {
+  weila_number: string
+  password: string
+}
+
+const accounts = ref<Account[]>([])
+
+const submit = handleSubmit(async () => {
+  try {
+    const newAccount = await api.value.v1.fetch<Account>('/operator/user/create-international-account', {
+      body: form,
+    })
+    accounts.value.push(newAccount)
+    // Clear the form after successful submission
+    form.phone = ''
+    form.password = ''
+  }
+  catch (error) {
+    console.error('Error creating account:', error)
+  }
+})
 </script>
 
 <template>
   <div class="max-w-md bg-white rounded-lg shadow-sm">
-    <div class="space-y-4">
-      <a-form :model="form" layout="vertical">
+    <div class="space-y-4 p-4">
+      <a-form :rules :model="form" layout="vertical" @submit="submit">
         <a-form-item label="手机号" field="phone">
           <a-input-group>
             <a-select
@@ -45,14 +75,28 @@ const regionOptions = [
           />
         </a-form-item>
 
-        <a-button type="primary" long>
+        <a-button type="primary" long html-type="submit">
           提交
         </a-button>
       </a-form>
+
+      <!-- Display created accounts -->
+      <div v-if="accounts.length > 0" class="mt-6">
+        <a-typography-title :heading="6">
+          已创建账号
+        </a-typography-title>
+        <a-table
+          :data="accounts"
+          :pagination="false"
+          :bordered="false"
+          class="mt-2"
+        >
+          <template #columns>
+            <a-table-column title="微喇号" data-index="weila_number" />
+            <a-table-column title="密码" data-index="password" />
+          </template>
+        </a-table>
+      </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-/* 使用Tailwind CSS，无需额外样式 */
-</style>

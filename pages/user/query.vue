@@ -2,7 +2,6 @@
 definePageMeta({
   name: '用户查询',
   layout: 'home',
-  keepalive: true,
 })
 
 interface User {

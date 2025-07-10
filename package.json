@@ -18,18 +18,21 @@
   "dependencies": {
     "@arco-design/web-vue": "latest",
     "@nuxt/eslint": "latest",
+    "@nuxt/image": "1.10.0",
     "@nuxt/kit": "latest",
     "@pinia/nuxt": "0.11.1",
     "@tanstack/vue-query": "latest",
     "@tanstack/vue-query-devtools": "latest",
     "@vueuse/nuxt": "latest",
-    "@weila/network": "https://pkg.pr.new/kvoon3/wl-network/@weila/network@a4088742b7967cdeb643326382d2eebb9465fb5e",
+    "@weila/network": "link://../network",
     "arco-design-nuxt-module": "latest",
     "nuxt": "latest",
     "pinia": "^3.0.3",
     "ufo": "latest",
+    "valibot": "^1.1.0",
     "vue": "latest",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+    "zod-arco-rules": "^0.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
