@@ -59,7 +59,7 @@ export default defineNuxtConfig({
       // },
       // },
 
-      '/proxy/**': {
+      '/v1/**': {
         proxy: {
           to: 'https://demo.weila.hk/v1/**',
         },
@@ -78,11 +78,11 @@ export default defineNuxtConfig({
       // NOTE: 此处 proxy 配置并不符合 nuxt 的最佳实践(SSG 模式下无法正常工作)
       // 考虑到 weila 的 v2 接口现只支持 https 协议，而 routeRules 中无法忽略证书，故在此配置代理
       proxy: {
-        '/proxy2': {
+        '/v2': {
           target: 'https://demo.weila.hk',
           changeOrigin: true,
           secure: false, // 忽略 SSL 证书
-          rewrite: path => path.replace(/^\/proxy2/, 'v2'),
+          // rewrite: path => path.replace(/^\/v2/, 'v2'),
         },
       },
     },

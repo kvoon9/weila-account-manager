@@ -2,7 +2,7 @@ import { Message } from '@arco-design/web-vue'
 import { WeilaApi } from '@weila/network'
 
 export const weilaApi = new WeilaApi({
-  baseURL: useBaseURL('v1', 'proxy'),
+  baseURL: 'v1',
   onError(error: any) {
     if (error instanceof Error) {
       Message.error(error.message)
@@ -22,8 +22,3 @@ export const weilaApi = new WeilaApi({
     navigateTo('/login')
   },
 })
-
-
-function useBaseURL(_base: string, proxy: string) {
-  return proxy
-}
