@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
 
-  ssr: false,
+  ssr: true,
 
   imports: {
     dirs: [

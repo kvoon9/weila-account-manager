@@ -2,6 +2,7 @@
 definePageMeta({
   name: '用户查询',
   layout: 'home',
+  keepalive: true,
 })
 
 interface User {
@@ -40,7 +41,7 @@ const columns = [
 <template>
   <div space-y-4 w-full>
     <div flex gap-4>
-      <a-input v-model="input" :style="{ width: '320px' }" placeholder="账号/手机号" />
+      <a-input v-model="input" :style="{ width: '320px' }" placeholder="账号/手机号" @keydown.enter="search" />
       <a-button @click="search">
         搜索
       </a-button>

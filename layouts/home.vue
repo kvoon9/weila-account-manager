@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { RouteRecordNormalized } from '#vue-router'
-import { ClientOnly } from '#components'
 
 const router = useRouter()
 const api = useWeilaApi()
