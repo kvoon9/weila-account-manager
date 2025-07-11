@@ -4,6 +4,10 @@
     {
       "source": "/v1/:match*",
       "destination": "https://demo.weila.hk/v1/:match*"
+    },
+    {
+      "source": "/v2/:match*",
+      "destination": "https://demo.weila.hk/v2/:match*"
     }
   ]
 }

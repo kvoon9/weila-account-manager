@@ -35,9 +35,12 @@ importers:
       '@vueuse/nuxt':
         specifier: latest
         version: 13.5.0(magicast@0.3.5)(nuxt@3.17.6(@parcel/watcher@2.5.0)(@types/node@22.10.7)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.44.1)(terser@5.37.0)(tsx@4.19.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.8.0))(vue-tsc@3.0.1(typescript@5.8.3))(yaml@2.8.0))(vue@3.5.13(typescript@5.8.3))
+      '@vueuse/router':
+        specifier: ^13.5.0
+        version: 13.5.0(vue-router@4.5.1(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))
       '@weila/network':
-        specifier: https://pkg.pr.new/kvoon3/wl-network/@weila/network@abc317a9fefd7ad2c9fc226db5f36d30c52ad665
-        version: https://pkg.pr.new/kvoon3/wl-network/@weila/network@abc317a9fefd7ad2c9fc226db5f36d30c52ad665(axios@1.10.0)(crypto-js@4.2.0)(md5@2.3.0)(ofetch@1.4.1)
+        specifier: https://pkg.pr.new/kvoon3/wl-network/@weila/network@148f6e2cd57e21854ab853f559f129060f8f8a8e
+        version: https://pkg.pr.new/kvoon3/wl-network/@weila/network@148f6e2cd57e21854ab853f559f129060f8f8a8e(axios@1.10.0)(crypto-js@4.2.0)(md5@2.3.0)(ofetch@1.4.1)
       arco-design-nuxt-module:
         specifier: latest
         version: 0.2.1(@arco-design/web-vue@2.57.0(vue@3.5.13(typescript@5.8.3)))(magicast@0.3.5)
@@ -1862,6 +1865,12 @@ packages:
       nuxt: ^3.0.0 || ^4.0.0-0
       vue: ^3.5.0
 
+  '@vueuse/router@13.5.0':
+    resolution: {integrity: sha512-QI735rn3FPMnEAqiwJKdYN2byMn1orRBcBq9YuZS/QSYUNV7tR8jhU99s7Vix+BL0YEIk/nU7lUZA0IOCarGzg==}
+    peerDependencies:
+      vue: ^3.5.0
+      vue-router: ^4.0.0
+
   '@vueuse/shared@13.5.0':
     resolution: {integrity: sha512-K7GrQIxJ/ANtucxIXbQlUHdB0TPA8c+q5i+zbrjxuhJCnJ9GtBg75sBSnvmLSxHKPg2Yo8w62PWksl9kwH0Q8g==}
     peerDependencies:
@@ -1912,8 +1921,8 @@ packages:
   '@webassemblyjs/wast-printer@1.14.1':
     resolution: {integrity: sha512-kPSSXE6De1XOR820C90RIo2ogvZG+c3KiHzqUoO/F34Y2shGzesfqv7o57xrxovZJH/MetF5UjroJ/R/3isoiw==}
 
-  '@weila/network@https://pkg.pr.new/kvoon3/wl-network/@weila/network@abc317a9fefd7ad2c9fc226db5f36d30c52ad665':
-    resolution: {tarball: https://pkg.pr.new/kvoon3/wl-network/@weila/network@abc317a9fefd7ad2c9fc226db5f36d30c52ad665}
+  '@weila/network@https://pkg.pr.new/kvoon3/wl-network/@weila/network@148f6e2cd57e21854ab853f559f129060f8f8a8e':
+    resolution: {tarball: https://pkg.pr.new/kvoon3/wl-network/@weila/network@148f6e2cd57e21854ab853f559f129060f8f8a8e}
     version: 0.0.3
     peerDependencies:
       axios: ^1.10.0
@@ -8045,6 +8054,12 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
+  '@vueuse/router@13.5.0(vue-router@4.5.1(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))':
+    dependencies:
+      '@vueuse/shared': 13.5.0(vue@3.5.13(typescript@5.8.3))
+      vue: 3.5.13(typescript@5.8.3)
+      vue-router: 4.5.1(vue@3.5.13(typescript@5.8.3))
+
   '@vueuse/shared@13.5.0(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
@@ -8125,7 +8140,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@weila/network@https://pkg.pr.new/kvoon3/wl-network/@weila/network@abc317a9fefd7ad2c9fc226db5f36d30c52ad665(axios@1.10.0)(crypto-js@4.2.0)(md5@2.3.0)(ofetch@1.4.1)':
+  '@weila/network@https://pkg.pr.new/kvoon3/wl-network/@weila/network@148f6e2cd57e21854ab853f559f129060f8f8a8e(axios@1.10.0)(crypto-js@4.2.0)(md5@2.3.0)(ofetch@1.4.1)':
     dependencies:
       axios: 1.10.0
       crypto-js: 4.2.0

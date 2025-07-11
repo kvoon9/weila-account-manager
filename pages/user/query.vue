@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SearchInput from '~/components/SearchInput.vue'
 import TheTable from '~/components/TheTable.vue'
 
 definePageMeta({
@@ -41,12 +42,7 @@ const columns = {
 
 <template>
   <div space-y-4 w-full>
-    <div flex gap-4>
-      <a-input v-model="input" :style="{ width: '320px' }" placeholder="账号/手机号" @keydown.enter="search" />
-      <a-button @click="search">
-        搜索
-      </a-button>
-    </div>
+    <SearchInput placeholder="账号/手机号" @search="search" />
     <TheTable :columns :data>
       <template #columns>
         <a-table-column title="操作">

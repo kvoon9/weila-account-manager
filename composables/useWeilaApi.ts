@@ -1,10 +1,12 @@
 import { WeilaApi } from '@weila/network'
 
+// const app_id = '102036'
+// const key = 'b3c658bd2e637c65efb134fb381d4a18'
+
 export function useWeilaApi() {
   const { start, finish } = useLoadingIndicator()
   const weilaApi = useState('weilaApi', () => new WeilaApi({
     baseURL: 'v1',
-    enableRequest: false,
     onStart() {
       start()
     },
