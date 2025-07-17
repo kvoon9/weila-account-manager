@@ -1,30 +1,15 @@
-import type { AsyncDataOptions } from '#app'
-
-export function useWeilaFetch<T>(
-  url: string,
-  options?: AsyncDataOptions<T> & {
-    body?: MaybeRefOrGetter<RequestInit['body'] | Record<string, any>>
-  },
+export function useWeilaFetch<DataT = void>(
+  ...args: Parameters<typeof useFetch<DataT>>
 ) {
-  const { body } = options || {}
-
   const weilaApi = useWeilaApi()
-  const res = useAsyncData(
+  const [url, options] = args
+
+  return useFetch(
     url,
-    () => weilaApi.value.v2.fetch(url, {
-      body: toValue(body),
-    }),
-    options,
+    {
+      ...options,
+      // @ts-expect-error type error
+      $fetch: weilaApi.value.v2.fetch,
+    },
   )
-
-  return res
 }
-
-// const { refresh } = res
-
-// if (body && (isRef(body) || isFunction(body))) {
-//   watch(body, (value) => {
-//     console.log('value', value)
-//     // refresh()
-//   }, { deep: true })
-// }
