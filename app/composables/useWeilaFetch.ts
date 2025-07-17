@@ -4,7 +4,7 @@ export function useWeilaFetch<DataT = void>(
   const weilaApi = useWeilaApi()
   const [url, options] = args
 
-  return useFetch(
+  return useFetch<DataT>(
     url,
     {
       ...options,
