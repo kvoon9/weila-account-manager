@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import SearchCorpLegal from '~/components/SearchCorpLegal.vue'
-
 definePageMeta({
   layout: 'home',
   name: '认证审核',
@@ -38,7 +36,6 @@ const { data: checkedLegals, refresh, pending: pendingChecked } = useWeilaFetch<
   legals: CheckedLegal[]
 }>('opt/corp/legal-record-search', {
   body: search,
-  watch: [search],
   deep: true,
 })
 
