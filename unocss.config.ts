@@ -1,9 +1,13 @@
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
-import { defineConfig, presetAttributify, presetIcons, presetTypography, presetUno, presetWebFonts, transformerDirectives, transformerVariantGroup } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetTypography, presetWebFonts, presetWind4, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetWind4({
+      preflights: {
+        reset: true,
+      },
+    }),
     presetAttributify(),
     presetIcons({
       scale: 1.2,
