@@ -9,8 +9,8 @@ definePageMeta({
 const api = useWeilaApi()
 
 const { form, rules, handleSubmit, reset } = useForm({
-  country_code: '+852',
-  phone: '',
+  country_code: { value: '+852' },
+  phone: { value: '' },
   password: {
     value: '',
     rule: v.pipe(v.string(), v.minLength(6)),

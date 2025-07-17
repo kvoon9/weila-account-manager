@@ -1,55 +1,75 @@
 import type { BaseSchema } from 'valibot'
-import { clearUndefined, objectEntries } from '@antfu/utils'
+import type { MaybeRefOrGetter } from 'vue'
+import { clearUndefined, isFunction, objectEntries } from '@antfu/utils'
 import * as v from 'valibot'
+import { ref as deepRef } from 'vue'
 import { valibotArcoRules } from 'zod-arco-rules'
 
-interface Form {
-  [key: string]: any
-}
+export function useForm<
+  T extends object,
+  K extends keyof T = keyof T,
+>(form: Record<K, {
+  value: MaybeRefOrGetter<T[K]>
+  rule?: BaseSchema<any, any, any>
+}>, options?: {
+  watch?: MaybeRefOrGetter[]
+  defaultSource?: MaybeRefOrGetter<any>
+}) {
+  const {
+    watch: watchList = [],
+    defaultSource,
+  } = options || {}
 
-export function useForm<T extends Form>(form: T) {
-  type K = keyof T
-  const normalizedForm = {} as any
-  const _rules = {} as Record<K, T[K]['rule']>
-  const _form = {} as Record<K, T[K]['value']>
-
-  for (const [key, maybeValue] of objectEntries(form)) {
-    const { value, rule } = normalizeValue(maybeValue)
-
-    normalizedForm[key] = { value, rule }
-    _rules[key] = rule
-    _form[key] = value
+  const rawRules = {} as any
+  const rawForm = {} as T
+  for (const [key, { rule, value }] of objectEntries(form)) {
+    rawRules[key] = rule
+    rawForm[key] = toValue(value)
   }
-
-  const reactiveForm = reactive(_form)
+  const reactiveForm = deepRef(rawForm)
+  const { rules, handleSubmit } = valibotArcoRules<T>(v.object(
+    clearUndefined(rawRules),
+  ))
 
   const reset = () => {
-    for (const [key, { value }] of objectEntries(normalizedForm)) {
-      // @ts-expect-error type error
-      reactiveForm[key] = value
+    for (const [key, { value }] of objectEntries(form)) {
+      reactiveForm.value[key] = toValue(value)
     }
   }
 
+  watch(watchList, () => {
+    reset()
+  })
+
+  // update default value
+  if (defaultSource && (isRef(defaultSource) || isFunction(defaultSource))) {
+    watch(defaultSource, () => {
+      for (const [key] of objectEntries(form)) {
+        const value = toValue(defaultSource)[key]
+        reactiveForm.value[key] = value
+      }
+    })
+  }
+
   return {
-    ...valibotArcoRules(v.object(
-      clearUndefined(_rules),
-    )),
+    rules,
+    handleSubmit,
     form: reactiveForm,
     reset,
   }
 }
 
-interface NormalizedFormValue {
-  value: any
-  rule?: BaseSchema<any, any, any>
-}
+// interface NormalizedFormValue {
+//   value: any
+//   rule?: BaseSchema<any, any, any>
+// }
 
 // NOTE: value: any ---> { value: any, rule: undefined }
-function normalizeValue(maybeValue: any) {
-  const isValue = maybeValue?.value === undefined
-  return (
-    isValue
-      ? { value: maybeValue, rule: undefined }
-      : maybeValue
-  ) as NormalizedFormValue
-}
+// function normalizeValue(maybeValue: any) {
+//   const isValue = maybeValue?.value === undefined
+//   return (
+//     isValue
+//       ? { value: maybeValue, rule: undefined }
+//       : maybeValue
+//   ) as NormalizedFormValue
+// }
