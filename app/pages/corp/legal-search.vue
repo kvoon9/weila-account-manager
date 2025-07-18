@@ -56,8 +56,7 @@ async function fetchLatestLegal() {
     </template>
 
     <ATable
-      v-if="result"
-      :data="result.legals"
+      :data="result?.legals"
       :pagination="false"
       row-key="id"
     >
