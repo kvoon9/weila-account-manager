@@ -9,7 +9,7 @@ function logout() {
 
 <template>
   <div h-full grid="~ rows-[min-content_1fr]">
-    <div flex p4 items-center border-b>
+    <div flex p4 items-center border="b base">
       <div font-semibold text-2xl>
         Vois Chat
       </div>
@@ -20,10 +20,10 @@ function logout() {
     </div>
     <div flex of-y-auto>
       <Sidebar />
-      <div grow-1 border-l grid="~ rows-[min-content_1fr]">
+      <div grow-1 border="l base" grid="~ rows-[min-content_1fr]">
         <a-page-header
           v-if="router.currentRoute.value.name"
-          border-b
+          border="b base"
           :title="router.currentRoute.value.name.toString()"
           :show-back="false"
         >
