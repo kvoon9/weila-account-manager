@@ -3,7 +3,7 @@ import type { MaybeRefOrGetter } from 'vue'
 import { clearUndefined, isFunction, objectEntries } from '@antfu/utils'
 import * as v from 'valibot'
 import { ref as deepRef } from 'vue'
-import { valibotArcoRules } from 'zod-arco-rules'
+import { genValibotRules } from 'zod-arco-rules'
 
 export function useForm<
   T extends object,
@@ -27,7 +27,8 @@ export function useForm<
     rawForm[key] = toValue(value)
   }
   const reactiveForm = deepRef(rawForm)
-  const { rules, handleSubmit } = valibotArcoRules<T>(v.object(
+
+  const rules = genValibotRules(v.object(
     clearUndefined(rawRules),
   ))
 
@@ -53,7 +54,6 @@ export function useForm<
 
   return {
     rules,
-    handleSubmit,
     form: reactiveForm,
     reset,
   }

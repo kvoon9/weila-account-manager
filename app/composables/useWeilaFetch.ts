@@ -1,3 +1,5 @@
+/* eslint-disable ts/ban-ts-comment */
+// @ts-nocheck type inter too deep
 export function useWeilaFetch<DataT = void>(
   ...args: Parameters<typeof useFetch<DataT>>
 ) {

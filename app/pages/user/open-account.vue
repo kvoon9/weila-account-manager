@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import * as v from 'valibot'
+import { handleSubmit } from 'zod-arco-rules'
 
 definePageMeta({
   name: '港澳台开户',
@@ -8,9 +9,15 @@ definePageMeta({
 
 const api = useWeilaApi()
 
-const { form, rules, handleSubmit, reset } = useForm({
+const { form, rules, reset } = useForm({
   country_code: { value: '+852' },
-  phone: { value: '' },
+  phone: {
+    value: '',
+    rule: v.pipe(
+      v.string(),
+      v.nonEmpty(),
+    ),
+  },
   password: {
     value: '',
     rule: v.pipe(v.string(), v.minLength(6)),
@@ -38,6 +45,8 @@ const submit = handleSubmit(async () => {
     accounts.value.push(newAccount)
 
   reset()
+}, {
+  rules,
 })
 </script>
 

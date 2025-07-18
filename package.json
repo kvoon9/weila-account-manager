@@ -33,7 +33,7 @@
     "valibot": "^1.1.0",
     "vue": "^3.5.17",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
-    "zod-arco-rules": "^0.1.0"
+    "zod-arco-rules": "^0.1.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
@@ -53,7 +53,7 @@
     "taze": "latest",
     "typescript": "latest",
     "unocss": "latest",
-    "vue-tsc": "^3.0.1"
+    "vue-tsc": "^3.0.2"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
