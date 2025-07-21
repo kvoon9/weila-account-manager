@@ -22,6 +22,7 @@
     "@nuxt/kit": "latest",
     "@nuxtjs/color-mode": "3.5.2",
     "@pinia/nuxt": "0.11.1",
+    "@valibot/i18n": "^1.0.0",
     "@vueuse/nuxt": "latest",
     "@vueuse/router": "^13.5.0",
     "@weila/network": "link://../network",
@@ -33,7 +34,7 @@
     "valibot": "^1.1.0",
     "vue": "^3.5.17",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
-    "zod-arco-rules": "^0.1.1"
+    "zod-arco-rules": "link://../../i/zod-arco-rules"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",

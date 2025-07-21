@@ -2,6 +2,7 @@
   // Required in vscode-eslint < v3.0.10 only
   "eslint.useFlatConfig": true,
   "cSpell.words": [
+    "valibot",
     "Weila"
   ]
 }

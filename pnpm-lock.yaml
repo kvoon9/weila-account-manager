@@ -26,6 +26,9 @@ importers:
       '@pinia/nuxt':
         specifier: 0.11.1
         version: 0.11.1(magicast@0.3.5)(pinia@3.0.3(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3)))
+      '@valibot/i18n':
+        specifier: ^1.0.0
+        version: 1.0.0(valibot@1.1.0(typescript@5.8.3))
       '@vueuse/nuxt':
         specifier: latest
         version: 13.5.0(magicast@0.3.5)(nuxt@4.0.0(@parcel/watcher@2.5.0)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.30.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.45.1)(terser@5.37.0)(tsx@4.19.2)(typescript@5.8.3)(vite@7.0.5(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.8.0))(vue-tsc@3.0.2(typescript@5.8.3))(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
@@ -60,8 +63,8 @@ importers:
         specifier: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
         version: https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz
       zod-arco-rules:
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: link://../../i/zod-arco-rules
+        version: link:../../i/zod-arco-rules
     devDependencies:
       '@antfu/eslint-config':
         specifier: latest
@@ -2106,6 +2109,11 @@ packages:
     resolution: {integrity: sha512-IsE3zFT1FLtAHyccVIZXEPBLTMRPB+NQDp2VsVALLz+o7mJj+ApLkmnxPjcVcbTVTOEchhKe0qAzt8mdzJ3/Iw==}
     peerDependencies:
       webpack: ^4 || ^5
+
+  '@valibot/i18n@1.0.0':
+    resolution: {integrity: sha512-daCwLqQOHAbUAWtWm1zE2JV6Gn3lqS3Qw/Rm4s+FGbwyfrk3ljee2eiZBVACFet3oanB2TZpZeLssppH3YxfiQ==}
+    peerDependencies:
+      valibot: ^1.0.0
 
   '@vercel/nft@0.29.4':
     resolution: {integrity: sha512-6lLqMNX3TuycBPABycx7A9F1bHQR7kiQln6abjFbPrf5C/05qHM9M5E4PeTE59c7z8g6vHnx1Ioihb2AQl7BTA==}
@@ -6232,9 +6240,6 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
-  zod-arco-rules@0.1.1:
-    resolution: {integrity: sha512-xxsFwLVFo1nGuLp1nMXw+UIBfrZWvSwbJsxpYqs3TatqaLgQzfdDLpTpj2Y1JWj6hg2cVtxHLrlh2tydfrfKkg==}
-
   zod@3.24.4:
     resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
 
@@ -8428,6 +8433,10 @@ snapshots:
       unplugin-utils: 0.2.4
       webpack: 5.97.1(esbuild@0.25.5)
       webpack-sources: 3.3.3
+
+  '@valibot/i18n@1.0.0(valibot@1.1.0(typescript@5.8.3))':
+    dependencies:
+      valibot: 1.1.0(typescript@5.8.3)
 
   '@vercel/nft@0.29.4(rollup@4.45.1)':
     dependencies:
@@ -13305,8 +13314,6 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.7.0
-
-  zod-arco-rules@0.1.1: {}
 
   zod@3.24.4: {}
 
