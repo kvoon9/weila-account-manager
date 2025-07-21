@@ -6,31 +6,17 @@ definePageMeta({
   name: '认证信息查询',
 })
 
-const search2 = ref({
+const search = ref({
   org_num: undefined,
   identify: '',
 })
-const result = ref<{
+
+const { data: result, refresh, pending: isLoading } = useWeilaMutation<{
   count: number
   legals: CheckedLegal[]
-} | undefined>(undefined)
-const isLoading = shallowRef(false)
-
-async function fetchLatestLegal() {
-  const api = useWeilaApi()
-  isLoading.value = true
-  try {
-    result.value = await api.value.v2.fetch('opt/corp/legal-search', {
-      body: search2.value,
-    })
-  }
-  catch (error) {
-    Message.error(String(error))
-  }
-  finally {
-    isLoading.value = false
-  }
-}
+}>('opt/corp/legal-search', {
+  body: search,
+})
 </script>
 
 <template>
@@ -38,25 +24,25 @@ async function fetchLatestLegal() {
     <template #extra>
       <ASpace>
         <AInput
-          v-model.number="search2.org_num"
+          v-model.number="search.org_num"
           placeholder="企业号"
           class="w-32"
           allow-clear
         />
         <AInput
-          v-model.trim="search2.identify"
+          v-model.trim="search.identify"
           placeholder="证件号"
           class="w-48"
           allow-clear
         />
-        <AButton type="primary" @click="fetchLatestLegal">
+        <AButton type="primary" @click="() => refresh()">
           查询
         </AButton>
       </ASpace>
     </template>
 
     <ATable
-      :data="result?.legals"
+      :data="result?.legals || []"
       :pagination="false"
       row-key="id"
     >

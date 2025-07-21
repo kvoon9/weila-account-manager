@@ -12,12 +12,11 @@ const search = ref({
   date: undefined, // a-date-p机构icker
 })
 
-const { data: checkedLegals, refresh, pending: pendingChecked } = useWeilaFetch<{
+const { data: checkedLegals, refresh, pending: pendingChecked } = useWeilaMutation<{
   count: number
   legals: CheckedLegal[]
 }>('opt/corp/legal-record-search', {
   body: search,
-  deep: true,
 })
 </script>
 
