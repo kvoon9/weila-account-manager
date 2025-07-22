@@ -14,8 +14,9 @@ export interface Legal {
 
   state: number
   updated: string // 2025-07-15 15:28:52
+  reason?: string
 }
 
-export interface CheckedLegal extends Legal {
-  reason: string
-}
+// export interface CheckedLegal extends Legal {
+//   reason: string
+// }
