@@ -37,7 +37,7 @@ const menu = computed<Menu>(() => {
     if (!rootKey)
       continue
 
-    const menuItem = menu.value?.[rootKey]
+    const menuItem = data?.[rootKey]
     if (!menuItem)
       continue
 
