@@ -25,7 +25,7 @@
     "@valibot/i18n": "^1.0.0",
     "@vueuse/nuxt": "latest",
     "@vueuse/router": "^13.5.0",
-    "@weila/network": "link://../network",
+    "@weila/network": "https://pkg.pr.new/kvoon3/wl-network/@weila/network@9e18454",
     "arco-design-nuxt-module": "latest",
     "crypto-js": "latest",
     "nuxt": "^4.0.0",
@@ -34,7 +34,7 @@
     "valibot": "^1.1.0",
     "vue": "^3.5.17",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
-    "zod-arco-rules": "link://../../i/zod-arco-rules"
+    "zod-arco-rules": "latest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
