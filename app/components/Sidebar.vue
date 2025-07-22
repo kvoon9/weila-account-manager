@@ -10,38 +10,42 @@ interface Menu {
   }
 }
 
-const menu = ref<Menu>({
-  user: { name: '用户管理', submenu: [] },
-  group: { name: '群组管理', submenu: [] },
-  device: { name: '设备管理', submenu: [] },
-  service: { name: '服务号管理', submenu: [] },
-  org: { name: '组织管理', submenu: [] },
-  driver: { name: '司机管理', submenu: [] },
-  corp: { name: '企业管理', submenu: [] },
+const menu = computed<Menu>(() => {
+  const data: Menu = {
+    user: { name: '用户管理', submenu: [] },
+    group: { name: '群组管理', submenu: [] },
+    device: { name: '设备管理', submenu: [] },
+    service: { name: '服务号管理', submenu: [] },
+    org: { name: '组织管理', submenu: [] },
+    driver: { name: '司机管理', submenu: [] },
+    corp: { name: '企业管理', submenu: [] },
+  }
+
+  const routeList = router.getRoutes().filter((i: any) =>
+    i?.meta?.layout === 'home'
+    && !i.aliasOf,
+  )
+
+  const routeRootRE = /^\/([\w-]+)(\/[\w-]+)*\/?$/
+
+  for (const route of routeList) {
+    const matches = route.path.match(routeRootRE)
+    if (!matches)
+      continue
+
+    const rootKey = matches[1] as keyof Menu
+    if (!rootKey)
+      continue
+
+    const menuItem = menu.value?.[rootKey]
+    if (!menuItem)
+      continue
+
+    menuItem.submenu.push(route)
+  }
+
+  return data
 })
-
-const routeList = router.getRoutes().filter((i: any) =>
-  i?.meta?.layout === 'home'
-  && !i.aliasOf,
-)
-
-const routeRootRE = /^\/([\w-]+)(\/[\w-]+)*\/?$/
-
-for (const route of routeList) {
-  const matches = route.path.match(routeRootRE)
-  if (!matches)
-    continue
-
-  const rootKey = matches[1] as keyof Menu
-  if (!rootKey)
-    continue
-
-  const menuItem = menu.value?.[rootKey]
-  if (!menuItem)
-    continue
-
-  menuItem.submenu.push(route)
-}
 
 function goTo(path: string) {
   navigateTo(path)
@@ -52,7 +56,6 @@ function goTo(path: string) {
   <a-menu
     :style="{ width: '200px', height: '100%' }"
     :default-selected-keys="[router.currentRoute.value.path]"
-    show-collapse-button
     auto-open
     @menu-item-click="goTo"
   >
