@@ -15,13 +15,17 @@ A Nuxt 3-based account management system for Weila (likely a corporate account/s
 - **Form Validation**: Valibot with zod-arco-rules integration
 - **Build Target**: Static SPA (ssr: false, nitro preset: 'static')
 
-### Styling Details
+## Standards
 
-1. Using unocss and unocss attributify preset, write style as short as possible
-2. No inline style props for DOM node: `style="xxx"`
-3. No style tag in vue
+- Using UnoCSS with unocss attributify preset, write style as short as possible
+- ALWAYS use UnoCSS classes rather than manual CSS
+- DO NOT hard code colors, use Tailwind's color system
+- ONLY add meaningful comments that explain why something is done, not what it does
+- Dev server is already running on http://localhost:3000 with HMR enabled. NEVER launch it yourself
+- ALWAYS use named functions when declaring methods, use arrow functions only for callbacks
+- ALWAYS prefer named exports over default exports
 
-#### Examples
+#### UnoCSS Examples
 
 Bad:
 
@@ -45,24 +49,13 @@ Good:
 </script>
 ```
 
-## Development Commands
+## Research & Documentation
 
-```bash
-# Development
-pnpm dev          # Start dev server on localhost:3000
-pnpm build        # Build for production
-pnpm preview      # Preview production build
-pnpm generate     # Generate static site
-
-# Code Quality
-pnpm lint         # Run ESLint
-pnpm lint:fix     # Auto-fix ESLint issues
-pnpm typecheck    # Run TypeScript type checking
-
-# Setup
-pnpm install      # Install dependencies
-pnpm prepare      # Nuxt prepare (postinstall)
-```
+NEVER hallucinate or guess URLs
+ALWAYS try accessing the llms.txt file first to find relevant documentation. EXAMPLE: https://pinia-colada.esm.dev/llms.txt
+If it exists, it will contain other links to the documentation for the LLMs used in this project
+ALWAYS follow existing links in table of contents or documentation indices
+Verify examples and patterns from documentation before using
 
 ## API Integration
 
