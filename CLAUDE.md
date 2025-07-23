@@ -15,6 +15,36 @@ A Nuxt 3-based account management system for Weila (likely a corporate account/s
 - **Form Validation**: Valibot with zod-arco-rules integration
 - **Build Target**: Static SPA (ssr: false, nitro preset: 'static')
 
+### Styling Details
+
+1. Using unocss and unocss attributify preset, write style as short as possible
+2. No inline style props for DOM node: `style="xxx"`
+3. No style tag in vue
+
+#### Examples
+
+Bad:
+
+```vue
+<script setup lang="ts">
+<div id="card" class="mx-auto my-2 overflow-scroll flex justify-around items-center" style="z-index: 1000" />
+</script>
+
+<style>
+#card {
+
+}
+</style>
+```
+
+Good:
+
+```vue
+<script setup lang="ts">
+<div mxa my2 of-scroll flex="~ justify-around items-center" z-1000 />
+</script>
+```
+
 ## Development Commands
 
 ```bash
