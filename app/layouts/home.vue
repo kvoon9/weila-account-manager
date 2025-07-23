@@ -1,4 +1,6 @@
 <script setup lang="ts">
+defineOptions({ name: 'HomeLayout' })
+
 const router = useRouter()
 
 function logout() {
@@ -9,14 +11,33 @@ function logout() {
 
 <template>
   <div h-full grid="~ rows-[min-content_1fr]">
-    <div flex p4 items-center border="b base">
-      <div font-semibold text-2xl>
-        Vois Chat
+    <div flex p4 items-center border="b base" bg-white>
+      <div flex items-center gap-3>
+        <div font-semibold text-xl text-gray-8>
+          Vois Chat
+        </div>
       </div>
       <div flex-1 />
-      <a-button type="text" @click="logout">
-        登出
-      </a-button>
+      <a-dropdown trigger="click">
+        <template #content>
+          <a-doption @click="logout">
+            <template #icon>
+              <div i-carbon-logout />
+            </template>
+            登出
+          </a-doption>
+        </template>
+
+        <NuxtImg
+          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face&q=80"
+          cursor-pointer
+          hover:op75
+          w8 h8
+          rounded-full
+          object-cover
+          alt="User Avatar"
+        />
+      </a-dropdown>
     </div>
     <div flex of-y-auto>
       <Sidebar />
