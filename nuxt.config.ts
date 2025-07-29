@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     'arco-design-nuxt-module',
     '@pinia/nuxt',
     '@nuxt/image',
+    'nuxt-mcp',
   ],
 
   ssr: false,
