@@ -16,22 +16,6 @@ export function useWeilaApi() {
     finish()
   })
 
-  function onError(error: any) {
-    console.error('error', error)
-    if (error instanceof Error) {
-      Message.error(error.message)
-    }
-    else {
-      const { errcode, errmsg } = error
-      if (errcode !== undefined && errmsg !== undefined) {
-        Message.error(`${errcode}: ${errmsg}`)
-      }
-      else {
-        console.error(error)
-      }
-    }
-  }
-
   weilaApi.value.hook('request:error', onError)
   weilaApi.value.hook('response:error', onError)
   weilaApi.value.hook('success', (data) => {
@@ -46,4 +30,20 @@ export function useWeilaApi() {
   })
 
   return weilaApi
+}
+
+function onError(error: any) {
+  console.error('error', error)
+  if (error instanceof Error) {
+    Message.error(error.message)
+  }
+  else {
+    const { errcode, errmsg } = error
+    if (errcode !== undefined && errmsg !== undefined) {
+      Message.error(`${errcode}: ${errmsg}`)
+    }
+    else {
+      console.error(error)
+    }
+  }
 }
