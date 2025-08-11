@@ -7,7 +7,7 @@ definePageMeta({
 })
 
 const curPage = shallowRef(1)
-const pageSize = shallowRef(1)
+const pageSize = shallowRef(10)
 const { data: uncheckedLegals, pending: pendingUnchecked, refresh } = useWeilaFetch<{
   count: number
   legals: Legal[]
@@ -63,13 +63,13 @@ function legalAudit(body: {
     <ACard title="待审核列表" :loading="pendingUnchecked">
       <ATable
         :data="uncheckedLegals?.legals || []"
-        :pagination="{ pageSize, current: curPage, total: uncheckedLegals.count }"
+        :pagination="{ pageSize, current: curPage, total: uncheckedLegals?.count || 0 }"
         :column-resizable="true"
         @page-change="(page: number) => curPage = page"
       >
         <template #columns>
           <ATableColumn title="企业号" data-index="org_num" />
-          <ATableColumn title="姓名" data-index="name" />
+          <ATableColumn title="名称" data-index="name" />
           <ATableColumn title="证件号" data-index="identify" />
           <ATableColumn title="更新时间" data-index="updated" />
           <ATableColumn title="操作">

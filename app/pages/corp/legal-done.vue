@@ -12,11 +12,17 @@ const search = ref({
   date: undefined, // a-date-p机构icker
 })
 
+const curPage = shallowRef(1)
+const pageSize = shallowRef(10)
 const { data: checkedLegals, refresh, pending: pendingChecked } = useWeilaMutation<{
   count: number
   legals: Legal[]
 }>('opt/corp/legal-record-search', {
   body: search,
+  query: computed(() => ({
+    page: curPage.value,
+    size: pageSize.value,
+  })),
 })
 
 const modalVisible = ref(false)
@@ -52,13 +58,14 @@ function openAuditModal(legal: Legal) {
       </template>
 
       <ATable
-        :data="checkedLegals?.legals || []"
-        :pagination="{ pageSize: 1 }"
-        row-key="id"
+        :data="checkedLegals?.legals.reverse() || []"
+        :pagination="{ pageSize, current: curPage, total: checkedLegals?.count || 0 }"
+        :column-resizable="true"
+        @page-change="(page: number) => curPage = page"
       >
         <template #columns>
           <ATableColumn title="企业号" data-index="org_num" />
-          <ATableColumn title="姓名" data-index="name" />
+          <ATableColumn title="名称" data-index="name" />
           <ATableColumn title="证件号" data-index="identify" />
           <ATableColumn title="状态">
             <template #cell="{ record }">

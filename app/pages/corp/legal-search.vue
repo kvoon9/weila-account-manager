@@ -11,11 +11,17 @@ const search = ref({
   identify: '',
 })
 
+const curPage = shallowRef(1)
+const pageSize = shallowRef(10)
 const { data: result, refresh, pending: isLoading } = useWeilaMutation<{
   count: number
   legals: Legal[]
 }>('opt/corp/legal-search', {
   body: search,
+  query: computed(() => ({
+    page: curPage.value,
+    size: pageSize.value,
+  })),
 })
 
 const modalVisible = ref(false)
@@ -51,8 +57,9 @@ function openAuditModal(legal: Legal) {
 
       <ATable
         :data="result?.legals || []"
-        :pagination="false"
-        row-key="id"
+        :pagination="{ pageSize, current: curPage, total: result?.count || 0 }"
+        :column-resizable="true"
+        @page-change="(page: number) => curPage = page"
       >
         <template #columns>
           <ATableColumn title="企业号" data-index="org_num" />
