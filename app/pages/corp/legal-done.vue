@@ -7,8 +7,8 @@ definePageMeta({
 })
 
 const search = ref({
-  org_num: 100055, // a-input
-  identify: '123456789012345678', // a-input
+  org_num: undefined, // a-input
+  identify: '', // a-input
   date: undefined, // a-date-p机构icker
 })
 

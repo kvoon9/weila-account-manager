@@ -13,8 +13,11 @@ const form = reactive<{
   passwd: string
   areacode: string | undefined
 }>({
-  account: '10000002',
-  passwd: '123456',
+  // account: '10000002',
+  // passwd: '123456',
+
+  account: '',
+  passwd: '',
   areacode: undefined, // 默认不选中
 })
 
