@@ -6,10 +6,17 @@ definePageMeta({
   name: '待审核认证',
 })
 
+const curPage = shallowRef(1)
+const pageSize = shallowRef(1)
 const { data: uncheckedLegals, pending: pendingUnchecked, refresh } = useWeilaFetch<{
   count: number
   legals: Legal[]
-}>('opt/corp/legal-get-wait-audit-list')
+}>('opt/corp/legal-get-wait-audit-list', {
+  query: computed(() => ({
+    page: curPage.value,
+    size: pageSize.value,
+  })),
+})
 
 // 审核弹窗
 const modalVisible = ref(false)
@@ -56,8 +63,9 @@ function legalAudit(body: {
     <ACard title="待审核列表" :loading="pendingUnchecked">
       <ATable
         :data="uncheckedLegals?.legals || []"
-        :pagination="{ pageSize: 1 }"
-        row-key="id"
+        :pagination="{ pageSize, current: curPage, total: uncheckedLegals.count }"
+        :column-resizable="true"
+        @page-change="(page: number) => curPage = page"
       >
         <template #columns>
           <ATableColumn title="企业号" data-index="org_num" />
