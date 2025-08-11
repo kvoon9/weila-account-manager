@@ -14,7 +14,7 @@ const menu = computed<Menu>(() => {
   const data: Menu = {
     // user: { name: '用户管理', submenu: [] },
     // group: { name: '群组管理', submenu: [] },
-    device: { name: '设备管理', submenu: [] },
+    // device: { name: '设备管理', submenu: [] },
     // service: { name: '服务号管理', submenu: [] },
     // org: { name: '组织管理', submenu: [] },
     // driver: { name: '司机管理', submenu: [] },

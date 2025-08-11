@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import md5 from 'md5'
 
-const api = useWeilaApi().value
+const api = useWeilaApi()
 
 definePageMeta({
   public: true,
@@ -19,7 +19,7 @@ const form = reactive<{
 })
 
 function submit() {
-  api.v2.fetch(`opt/auth/login`, {
+  api.value.v2.fetch(`opt/auth/login`, {
     body: {
       ...form,
       passwd: md5(form.passwd),

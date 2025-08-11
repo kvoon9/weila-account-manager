@@ -1,11 +1,13 @@
+import { getRootUrl } from '@kvoon/utils'
 import { WeilaApi } from '@weila/network'
 
 export function useWeilaApi() {
+  const baseURL = `${getRootUrl(window.location.href)}/v2`
   const { start, finish } = useLoadingIndicator()
   const weilaApi = useState('weilaApi', () => new WeilaApi(
     '102036',
     'b3c658bd2e637c65efb134fb381d4a18',
-    { baseURL: 'v2' },
+    { baseURL },
   ))
 
   weilaApi.value.hook('request:start', () => {
